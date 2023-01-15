@@ -152,27 +152,27 @@ static int in_meminfo_collect(struct flb_input_instance *i_ins,
     msgpack_pack_map(&mp_pck, entries);
 
     msgpack_pack_str(&mp_pck, 9);
-    msgpack_pack_str_body(&mp_pck, "Mem.total", 9);
+    msgpack_pack_str_body(&mp_pck, "mem.total", 9);
     msgpack_pack_uint64(&mp_pck, data.mem_total);
 
     msgpack_pack_str(&mp_pck, 8);
-    msgpack_pack_str_body(&mp_pck, "Mem.used", 8);
+    msgpack_pack_str_body(&mp_pck, "mem.used", 8);
     msgpack_pack_uint64(&mp_pck, data.mem_used);
 
     msgpack_pack_str(&mp_pck, 8);
-    msgpack_pack_str_body(&mp_pck, "Mem.free", 8);
+    msgpack_pack_str_body(&mp_pck, "mem.free", 8);
     msgpack_pack_uint64(&mp_pck, data.mem_free);
 
     msgpack_pack_str(&mp_pck, 10);
-    msgpack_pack_str_body(&mp_pck, "Swap.total", 10);
+    msgpack_pack_str_body(&mp_pck, "swap.total", 10);
     msgpack_pack_uint64(&mp_pck, data.swap_total);
 
     msgpack_pack_str(&mp_pck, 9);
-    msgpack_pack_str_body(&mp_pck, "Swap.used", 9);
+    msgpack_pack_str_body(&mp_pck, "swap.used", 9);
     msgpack_pack_uint64(&mp_pck, data.swap_used);
 
     msgpack_pack_str(&mp_pck, 9);
-    msgpack_pack_str_body(&mp_pck, "Swap.free", 9);
+    msgpack_pack_str_body(&mp_pck, "swap.free", 9);
     msgpack_pack_uint64(&mp_pck, data.swap_free);
 
     ++ctx->idx;

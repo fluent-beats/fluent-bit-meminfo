@@ -1,6 +1,6 @@
 # Description
 
-[Fluent Bit](https://fluentbit.io) input plugin that collects memory info from Linux `meminfo device file`
+[Fluent Bit](https://fluentbit.io) input plugin that collects memory information from Linux hosts.
 
 This plugin **will only work** on hosts running Linux, because it relies on `/proc/meminfo` file from [Procfs](https://en.wikipedia.org/wiki/Procfs).
 

@@ -2,6 +2,8 @@
 
 [Fluent Bit](https://fluentbit.io) input plugin that collects memory info from Linux `meminfo device file`
 
+This plugin **will only work** on hosts running Linux, because it relies on `/proc/meminfo` file from [Procfs](https://en.wikipedia.org/wiki/Procfs).
+
 # Requirements
 
 - Docker
@@ -19,7 +21,7 @@
 
 # Design
 
-This plugin was desined to collect memory from any mounted `meminfo` file.
+This plugin was desined to collect memory from any mounted Linux `meminfo` proc file.
 
 It can be used to collect host memory info, even if Fluent Bit is running inside a cotainer, which is not achiavable using **native** Fluent Bit `mem` plugin.
 

@@ -29,8 +29,8 @@ It can be used to collect host memory info, even if Fluent Bit is running inside
 
 This input plugin can be configured using the following parameters:
 
-| Key  | Description | Default |
-| ---- | ----------- | ------ |
-| interval_sec | Interval in seconds to collect data  | 1 |
-| proc_path | Path to look for meminfo file  | /proc |
+ Key                    | Description                                   | Default
+------------------------|-----------------------------------------------|------------------
+ interval_sec           | Interval in seconds to collect data           | 1
+ proc_path              | Path to look for meminfo file                 | /proc
 

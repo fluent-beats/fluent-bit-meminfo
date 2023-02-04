@@ -19,23 +19,17 @@
 #include <fluent-bit/flb_info.h>
 #include <fluent-bit/flb_input.h>
 #include <fluent-bit/flb_input_plugin.h>
-#include <fluent-bit/flb_kernel.h>
 #include <fluent-bit/flb_pack.h>
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <sys/sysinfo.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 
 #include "meminfo.h"
 
 struct flb_input_plugin in_meminfo_plugin;
 
 static int in_meminfo_collect(struct flb_input_instance *i_ins,
-                          struct flb_config *config, void *in_context);
+                              struct flb_config *config, void *in_context);
 
 static uint64_t get_entry(const char* name, const char* buf)
 {
@@ -76,11 +70,10 @@ static int meminfo_calc(char* proc_path, struct flb_in_meminfo_data *m_data)
 }
 
 static int in_meminfo_init(struct flb_input_instance *in,
-                       struct flb_config *config, void *data)
+                           struct flb_config *config, void *data)
 {
     int ret;
     struct flb_in_meminfo_config *ctx;
-    (void) data;
     const char *pval = NULL;
 
     /* Initialize context */
@@ -128,7 +121,6 @@ static int in_meminfo_collect(struct flb_input_instance *i_ins,
                               struct flb_config *config, void *in_context)
 {
     int ret;
-    int len;
     int entries = 6;/* (total,used,free) * (memory, swap) */
     struct flb_in_meminfo_config *ctx = in_context;
     struct flb_in_meminfo_data data;
@@ -173,8 +165,6 @@ static int in_meminfo_collect(struct flb_input_instance *i_ins,
     msgpack_pack_str_body(&mp_pck, "swap.free", 9);
     msgpack_pack_uint64(&mp_pck, data.swap_free);
 
-    ++ctx->idx;
-
     flb_input_chunk_append_raw(i_ins, NULL, 0, mp_sbuf.data, mp_sbuf.size);
     msgpack_sbuffer_destroy(&mp_sbuf);
 
@@ -183,7 +173,6 @@ static int in_meminfo_collect(struct flb_input_instance *i_ins,
 
 static int in_meminfo_exit(void *data, struct flb_config *config)
 {
-    (void) *config;
     struct flb_in_meminfo_config *ctx = data;
 
     if (!ctx) {

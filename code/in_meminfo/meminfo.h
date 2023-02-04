@@ -38,7 +38,6 @@ struct flb_in_meminfo_data {
 };
 
 struct flb_in_meminfo_config {
-    int    idx;
     char*  proc_path;
     int    interval_sec;
     int    interval_nsec;

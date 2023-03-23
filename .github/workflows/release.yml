@@ -19,6 +19,7 @@ jobs:
         with:
           plugin-path: "./code"
           plugin-name: "in_meminfo"
+          fluent-bit-version: 1.8.11
 
       - name: Upload
         uses: softprops/action-gh-release@v1

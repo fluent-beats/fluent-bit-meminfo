@@ -63,6 +63,9 @@ static int meminfo_calc(char* proc_path, struct flb_in_meminfo_data *m_data)
             m_data->swap_free = get_entry("SwapFree:", buf);
             m_data->swap_used = m_data->swap_total - m_data->swap_free;
 
+            m_data->mem_available = get_entry("MemAvailable:", buf);
+            m_data->mem_cached = get_entry("Cached:", buf);
+
             return 0;
         }
     }
@@ -121,7 +124,8 @@ static int in_meminfo_collect(struct flb_input_instance *i_ins,
                               struct flb_config *config, void *in_context)
 {
     int ret;
-    int entries = 6;/* (total,used,free) * (memory, swap) */
+    /* memory * (total,used,free) + swap * (total,used,free) + available + cached */
+    int entries = 8;
     struct flb_in_meminfo_config *ctx = in_context;
     struct flb_in_meminfo_data data;
     msgpack_packer mp_pck;
@@ -164,6 +168,14 @@ static int in_meminfo_collect(struct flb_input_instance *i_ins,
     msgpack_pack_str(&mp_pck, 9);
     msgpack_pack_str_body(&mp_pck, "swap.free", 9);
     msgpack_pack_uint64(&mp_pck, data.swap_free);
+
+    msgpack_pack_str(&mp_pck, 13);
+    msgpack_pack_str_body(&mp_pck, "mem.available", 13);
+    msgpack_pack_uint64(&mp_pck, data.mem_available);
+
+    msgpack_pack_str(&mp_pck, 10);
+    msgpack_pack_str_body(&mp_pck, "mem.cached", 10);
+    msgpack_pack_uint64(&mp_pck, data.mem_cached);
 
     flb_input_chunk_append_raw(i_ins, NULL, 0, mp_sbuf.data, mp_sbuf.size);
     msgpack_sbuffer_destroy(&mp_sbuf);

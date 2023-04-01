@@ -32,6 +32,8 @@ struct flb_in_meminfo_data {
     uint64_t mem_total;
     uint64_t mem_used;
     uint64_t mem_free;
+    uint64_t mem_available;
+    uint64_t mem_cached;
     uint64_t swap_total;
     uint64_t swap_used;
     uint64_t swap_free;

@@ -40,9 +40,9 @@ struct flb_in_meminfo_data {
 };
 
 struct flb_in_meminfo_config {
-    char*  proc_path;
-    int    interval_sec;
-    int    interval_nsec;
+    char *proc_path;
+    int interval_sec;
+    int interval_nsec;
     struct flb_input_instance *ins;
 };
 

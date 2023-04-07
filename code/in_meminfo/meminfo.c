@@ -42,7 +42,7 @@ static uint64_t get_entry(const char* name, const char* buf)
     return (uint64_t) bytes;
 }
 
-static int meminfo_calc(char* proc_path, struct flb_in_meminfo_data *m_data)
+static int meminfo_calc(char *proc_path, struct flb_in_meminfo_data *m_data)
 {
     static FILE* fd;
     char buf[8192];

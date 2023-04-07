@@ -21,10 +21,11 @@ This plugin **will only work** on hosts running Linux, because it relies on `/pr
 
 # Design
 
-This plugin was desined to collect memory from any mounted Linux `meminfo` proc file.
+This plugin was desined to collect data from any mounted Linux `meminfo` proc file.
 
 It can be used to collect host memory info, even if Fluent Bit is running inside a container, which is not achiavable using **native** Fluent Bit `mem` plugin.
 
+> Potentially [LXCFS](https://linuxcontainers.org/lxcfs/) could bypass that without requiring a custom plugin
 ## Configurations
 
 This input plugin can be configured using the following parameters:
